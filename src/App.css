@@ -1,0 +1,868 @@
+/* Clawkinz - Webkinz-inspired CSS */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --pink-light: #ffb6d9;
+  --pink-mid: #ff69b4;
+  --pink-dark: #d84a8c;
+  --purple-light: #d9b3ff;
+  --purple-mid: #a855f7;
+  --blue-light: #87ceeb;
+  --blue-mid: #4a90d9;
+  --green-light: #90ee90;
+  --green-mid: #4ade80;
+  --green-grass: #7bc043;
+  --yellow-light: #fff176;
+  --yellow-mid: #ffd54f;
+  --orange-mid: #ffb347;
+  --red-mid: #ff6b6b;
+  --white: #ffffff;
+  --cream: #fffef0;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(180deg, #87ceeb 0%, #b0e0e6 50%, #90ee90 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ============ WELCOME SCREEN ============ */
+.welcome-screen {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #87ceeb 0%, #98d8e8 30%, #7bc043 60%, #5a9c32 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, #6bb3e0 0%, #87ceeb 50%, #a8d8ea 100%);
+}
+
+.welcome-clouds {
+  position: absolute;
+  top: 5%;
+  width: 100%;
+  height: 150px;
+}
+
+.cloud {
+  position: absolute;
+  background: white;
+  border-radius: 50px;
+  opacity: 0.9;
+}
+
+.cloud::before, .cloud::after {
+  content: '';
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+}
+
+.cloud-1 {
+  width: 120px;
+  height: 40px;
+  top: 20px;
+  left: 10%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.cloud-2 {
+  width: 150px;
+  height: 50px;
+  top: 60px;
+  right: 15%;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+.cloud-3 {
+  width: 100px;
+  height: 35px;
+  top: 40px;
+  left: 60%;
+  animation: float 7s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.welcome-hills {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65%;
+}
+
+.hill {
+  position: absolute;
+  border-radius: 50% 50% 0 0;
+}
+
+.hill-back {
+  width: 120%;
+  height: 400px;
+  bottom: 150px;
+  left: -10%;
+  background: linear-gradient(180deg, #8bc34a 0%, #7cb342 100%);
+}
+
+.hill-mid {
+  width: 100%;
+  height: 350px;
+  bottom: 100px;
+  left: 0;
+  background: linear-gradient(180deg, #9ccc65 0%, #8bc34a 100%);
+}
+
+.hill-front {
+  width: 110%;
+  height: 300px;
+  bottom: 0;
+  left: -5%;
+  background: linear-gradient(180deg, #aed581 0%, #9ccc65 100%);
+}
+
+.welcome-houses {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 5%;
+}
+
+.house {
+  font-size: 2.5rem;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+  animation: bounce 3s ease-in-out infinite;
+}
+
+.house:nth-child(2) { animation-delay: 0.5s; }
+.house:nth-child(3) { animation-delay: 1s; }
+.house:nth-child(4) { animation-delay: 1.5s; }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8%;
+}
+
+.welcome-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-text {
+  font-family: 'Fredoka One', cursive;
+  font-size: 5rem;
+  background: linear-gradient(180deg, #ff6b6b 0%, #ffd54f 25%, #4ade80 50%, #4a90d9 75%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  filter: drop-shadow(3px 3px 0px #fff);
+  letter-spacing: 2px;
+}
+
+.logo-tagline {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.8rem;
+  color: #ff69b4;
+  text-shadow: 2px 2px 0px #fff, -1px -1px 0px #fff;
+  margin-top: -10px;
+}
+
+.welcome-crabs {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 30px 0;
+}
+
+.crab {
+  font-size: 4rem;
+  animation: waddle 1s ease-in-out infinite;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+}
+
+.crab:nth-child(2) { animation-delay: 0.2s; }
+.crab:nth-child(3) { animation-delay: 0.4s; }
+.crab:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes waddle {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.welcome-buttons {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.signpost-button {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.signpost-button:hover {
+  transform: scale(1.05);
+}
+
+.signpost-button:active {
+  transform: scale(0.98);
+}
+
+.signpost-pole {
+  width: 12px;
+  height: 80px;
+  background: linear-gradient(90deg, #8b4513 0%, #a0522d 50%, #8b4513 100%);
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+.signpost-sign {
+  background: linear-gradient(180deg, #ffd54f 0%, #ffb347 100%);
+  padding: 15px 25px;
+  border-radius: 12px;
+  border: 4px solid #d4a03a;
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.2), inset 0 2px 0 rgba(255,255,255,0.5);
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  color: #5d4037;
+  text-align: center;
+  min-width: 140px;
+}
+
+.welcome-flowers {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 10%;
+  font-size: 2rem;
+}
+
+/* ============ LOGIN SCREEN ============ */
+.login-screen {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #ffb6d9 0%, #ff69b4 50%, #d84a8c 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-box {
+  background: linear-gradient(180deg, #fff 0%, #ffe4ec 100%);
+  border-radius: 30px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 2px 0 rgba(255,255,255,0.8);
+  border: 5px solid #ff69b4;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.login-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2.5rem;
+  color: #d84a8c;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+}
+
+.login-subtitle {
+  color: #ff69b4;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-input {
+  padding: 15px 20px;
+  border: 3px solid #ffb6d9;
+  border-radius: 15px;
+  font-size: 1rem;
+  font-family: 'Nunito', sans-serif;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #ff69b4;
+}
+
+.form-input::placeholder {
+  color: #ffb6d9;
+}
+
+.login-button {
+  background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%);
+  border: 4px solid #16a34a;
+  border-radius: 20px;
+  padding: 15px 30px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 0 #15803d, 0 6px 10px rgba(0,0,0,0.2);
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #15803d, 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.login-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #15803d, 0 3px 5px rgba(0,0,0,0.2);
+}
+
+.login-links {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-link {
+  color: #d84a8c;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.login-link:hover {
+  color: #ff69b4;
+  text-decoration: underline;
+}
+
+.login-crab {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: waddle 1s ease-in-out infinite;
+}
+
+/* ============ CREATE CLAWDBOT SCREEN ============ */
+.create-screen {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #a855f7 0%, #7c3aed 50%, #5b21b6 100%);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+
+.create-box {
+  background: linear-gradient(180deg, #fff 0%, #f3e8ff 100%);
+  border-radius: 30px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  border: 5px solid #d8b4fe;
+  max-width: 600px;
+  width: 100%;
+}
+
+.create-section {
+  margin-bottom: 25px;
+}
+
+.create-section-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+  color: #7c3aed;
+  margin-bottom: 15px;
+}
+
+.name-input {
+  width: 100%;
+  padding: 15px 20px;
+  border: 3px solid #d8b4fe;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-family: 'Nunito', sans-serif;
+}
+
+.personality-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.personality-option {
+  padding: 12px;
+  border: 3px solid #d8b4fe;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.personality-option:hover {
+  border-color: #a855f7;
+  background: #f3e8ff;
+}
+
+.personality-option.selected {
+  border-color: #7c3aed;
+  background: linear-gradient(180deg, #d8b4fe 0%, #c084fc 100%);
+  color: white;
+}
+
+.color-grid {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.color-option {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid white;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+}
+
+.color-option.selected {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 4px #d8b4fe, 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.accessory-grid {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.accessory-option {
+  padding: 15px 20px;
+  border: 3px solid #d8b4fe;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all 0.2s;
+}
+
+.accessory-option:hover {
+  border-color: #a855f7;
+}
+
+.accessory-option.selected {
+  border-color: #7c3aed;
+  background: #f3e8ff;
+}
+
+.clawdbot-preview {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(180deg, #f0fdf4 0%, #dcfce7 100%);
+  border-radius: 20px;
+  border: 3px solid #86efac;
+  margin-bottom: 20px;
+}
+
+.preview-crab {
+  font-size: 6rem;
+  animation: waddle 1s ease-in-out infinite;
+  display: inline-block;
+}
+
+.preview-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem;
+  color: #16a34a;
+  margin-top: 10px;
+}
+
+.create-button {
+  width: 100%;
+  background: linear-gradient(180deg, #f472b6 0%, #ec4899 100%);
+  border: 4px solid #db2777;
+  border-radius: 20px;
+  padding: 18px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.4rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #be185d, 0 6px 15px rgba(0,0,0,0.2);
+  transition: all 0.2s;
+}
+
+.create-button:hover {
+  transform: translateY(-2px);
+}
+
+.create-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #be185d;
+}
+
+/* ============ ROOM SCREEN ============ */
+.room-screen {
+  min-height: 100vh;
+  background: #87ceeb;
+  position: relative;
+  overflow: hidden;
+}
+
+.room-header {
+  background: linear-gradient(180deg, #7c3aed 0%, #6d28d9 100%);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid #5b21b6;
+}
+
+.room-title {
+  font-family: 'Fredoka One', cursive;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.clawcash-display {
+  background: linear-gradient(180deg, #ffd54f 0%, #ffb347 100%);
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: 3px solid #f59e0b;
+  font-family: 'Fredoka One', cursive;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shop-button {
+  background: linear-gradient(180deg, #f472b6 0%, #ec4899 100%);
+  border: 3px solid #db2777;
+  border-radius: 15px;
+  padding: 10px 25px;
+  font-family: 'Fredoka One', cursive;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.room-area {
+  position: relative;
+  height: calc(100vh - 60px);
+  background: linear-gradient(180deg, #fef3c7 0%, #fde68a 30%, #a16207 100%);
+  border: 8px solid #92400e;
+  margin: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.room-floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: repeating-linear-gradient(
+    90deg,
+    #d97706 0px,
+    #d97706 50px,
+    #b45309 50px,
+    #b45309 100px
+  );
+}
+
+.room-wall {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);
+}
+
+.room-clawdbot {
+  position: absolute;
+  font-size: 5rem;
+  cursor: pointer;
+  transition: left 0.5s ease-out, top 0.5s ease-out;
+  z-index: 100;
+  filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.3));
+  animation: waddle 0.8s ease-in-out infinite;
+}
+
+.room-item {
+  position: absolute;
+  font-size: 3rem;
+  cursor: move;
+  transition: transform 0.1s;
+  filter: drop-shadow(2px 3px 5px rgba(0,0,0,0.3));
+}
+
+.room-item:hover {
+  transform: scale(1.1);
+}
+
+.room-item.dragging {
+  opacity: 0.7;
+  transform: scale(1.15);
+}
+
+.inventory-bar {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #a855f7 0%, #7c3aed 100%);
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 4px solid #6d28d9;
+  display: flex;
+  gap: 10px;
+  max-width: 80%;
+  overflow-x: auto;
+}
+
+.inventory-slot {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(180deg, #f3e8ff 0%, #e9d5ff 100%);
+  border: 3px solid #d8b4fe;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.inventory-slot:hover {
+  background: white;
+}
+
+/* ============ SHOP SCREEN ============ */
+.shop-screen {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #c084fc 0%, #a855f7 50%, #7c3aed 100%);
+}
+
+.shop-header {
+  background: linear-gradient(180deg, #f472b6 0%, #ec4899 50%, #db2777 100%);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 5px solid #be185d;
+}
+
+.shop-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shop-logo-text {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2rem;
+  color: white;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+}
+
+.shop-mascot {
+  font-size: 2.5rem;
+  animation: waddle 1s ease-in-out infinite;
+}
+
+.back-button {
+  background: linear-gradient(180deg, #ffd54f 0%, #ffb347 100%);
+  border: 3px solid #f59e0b;
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-family: 'Fredoka One', cursive;
+  color: #92400e;
+  cursor: pointer;
+}
+
+.shop-content {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.shop-categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  flex: 1;
+}
+
+.category-button {
+  background: linear-gradient(180deg, #fff 0%, #fce7f3 100%);
+  border: 3px solid #f9a8d4;
+  border-radius: 12px;
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.category-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.category-button.selected {
+  background: linear-gradient(180deg, #f9a8d4 0%, #f472b6 100%);
+  border-color: #ec4899;
+}
+
+.category-icon {
+  font-size: 2rem;
+}
+
+.category-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #831843;
+  text-align: center;
+}
+
+.shop-items {
+  background: linear-gradient(180deg, #fff 0%, #fdf4ff 100%);
+  border-radius: 20px;
+  padding: 20px;
+  border: 4px solid #e879f9;
+  flex: 1;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.shop-item {
+  background: linear-gradient(180deg, #fdf4ff 0%, #fae8ff 100%);
+  border: 3px solid #e879f9;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.shop-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.item-icon {
+  font-size: 3rem;
+  margin-bottom: 5px;
+}
+
+.item-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #86198f;
+  margin-bottom: 5px;
+}
+
+.item-price {
+  background: linear-gradient(180deg, #ffd54f 0%, #ffb347 100%);
+  padding: 5px 12px;
+  border-radius: 10px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.9rem;
+  color: #92400e;
+  display: inline-block;
+}
+
+.shop-footer {
+  background: linear-gradient(180deg, #581c87 0%, #3b0764 100%);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 4px solid #7e22ce;
+}
+
+.cart-info {
+  color: white;
+  font-weight: 600;
+}
+
+.checkout-button {
+  background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%);
+  border: 4px solid #16a34a;
+  border-radius: 15px;
+  padding: 12px 30px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #15803d;
+}
+
+.checkout-button:hover {
+  transform: translateY(-2px);
+}
