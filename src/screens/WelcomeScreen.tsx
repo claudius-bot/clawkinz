@@ -6,66 +6,58 @@ interface WelcomeScreenProps {
 export default function WelcomeScreen({ onMember, onNewAdoption }: WelcomeScreenProps) {
   return (
     <div className="welcome-screen">
-      {/* Sky */}
-      <div className="welcome-sky">
-        <div className="welcome-clouds">
-          <div className="cloud cloud-1"></div>
-          <div className="cloud cloud-2"></div>
-          <div className="cloud cloud-3"></div>
-        </div>
+      {/* Full background image */}
+      <div className="welcome-background">
+        <img src="/assets/welcome-background.png" alt="" className="bg-image" />
       </div>
-
-      {/* Hills */}
-      <div className="welcome-hills">
-        <div className="hill hill-back"></div>
-        <div className="hill hill-mid"></div>
-        <div className="hill hill-front"></div>
-      </div>
-
-      {/* Houses */}
-      <div className="welcome-houses">
-        <span className="house">🏠</span>
-        <span className="house">🏡</span>
-        <span className="house">🏘️</span>
-        <span className="house">🏰</span>
-      </div>
-
-      {/* Main Content */}
+      
+      {/* Content overlay */}
       <div className="welcome-content">
-        <div className="welcome-logo">
-          <div className="logo-text">Clawkinz</div>
-          <div className="logo-tagline">Come in and Play!</div>
+        {/* Logo */}
+        <div className="logo-container">
+          <img src="/assets/logo.png" alt="Clawkinz" className="main-logo" />
+          <img src="/assets/banner-tagline.png" alt="Come in and Play!" className="tagline-banner" />
         </div>
-
-        {/* Cute crabs */}
-        <div className="welcome-crabs">
-          <span className="crab">🦀</span>
-          <span className="crab">🦞</span>
-          <span className="crab">🦀</span>
-          <span className="crab">🦐</span>
+        
+        {/* Characters */}
+        <div className="characters-row">
+          <img src="/assets/crab-character.png" alt="Crab friend" className="welcome-crab crab-left" />
+          <img src="/assets/crab-walking.png" alt="Crab friend" className="welcome-crab crab-right" />
         </div>
-
+        
         {/* Signpost buttons */}
-        <div className="welcome-buttons">
-          <div className="signpost-button" onClick={onMember}>
-            <div className="signpost-sign">I'M A<br/>MEMBER</div>
-            <div className="signpost-pole"></div>
-          </div>
-          <div className="signpost-button" onClick={onNewAdoption}>
-            <div className="signpost-sign">MY FIRST<br/>ADOPTION</div>
-            <div className="signpost-pole"></div>
-          </div>
+        <div className="signposts">
+          <button className="signpost-btn" onClick={onMember}>
+            <img src="/assets/signpost-login.png" alt="Login" />
+            <span className="signpost-text">I'M A MEMBER</span>
+          </button>
+          <button className="signpost-btn" onClick={onNewAdoption}>
+            <img src="/assets/signpost-register.png" alt="Register" />
+            <span className="signpost-text">MY FIRST ADOPTION</span>
+          </button>
         </div>
-      </div>
-
-      {/* Flowers */}
-      <div className="welcome-flowers">
-        <span>🌸</span>
-        <span>🌼</span>
-        <span>🌺</span>
-        <span>🌻</span>
-        <span>🌷</span>
-        <span>🌸</span>
+        
+        {/* Bottom navigation buttons */}
+        <div className="bottom-nav">
+          <button className="nav-pill">
+            <span className="nav-icon">📖</span>
+            <span>COLLECTIONS CATALOG</span>
+          </button>
+          <button className="nav-pill">
+            <span className="nav-icon">📷</span>
+            <span>TAKE A TOUR</span>
+          </button>
+          <button className="nav-pill">
+            <span className="nav-icon">🏪</span>
+            <span>STORE LOCATOR</span>
+          </button>
+        </div>
+        
+        {/* Footer */}
+        <footer className="welcome-footer">
+          <p>Clawkinz World is where your plush Clawdbot comes to life!</p>
+          <p className="copyright">© 2026 CLAWDBOT • Patent Pending</p>
+        </footer>
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import type { Clawdbot, InventoryItem } from '../types'
 
 interface RoomScreenProps {
@@ -9,154 +9,130 @@ interface RoomScreenProps {
   onUpdateInventory: (inventory: InventoryItem[]) => void
 }
 
-const COLORS: Record<string, string> = {
-  red: 'hue-rotate(0deg)',
-  orange: 'hue-rotate(30deg)',
-  yellow: 'hue-rotate(50deg)',
-  green: 'hue-rotate(100deg)',
-  blue: 'hue-rotate(180deg)',
-  purple: 'hue-rotate(260deg)',
-  pink: 'hue-rotate(320deg)',
-}
-
 export default function RoomScreen({ 
   clawdbot, 
   inventory, 
   clawCash, 
-  onShop, 
+  onShop,
   onUpdateInventory 
 }: RoomScreenProps) {
-  const [clawdbotPos, setClawdbotPos] = useState({ x: 200, y: 300 })
-  const [draggingItem, setDraggingItem] = useState<string | null>(null)
+  const [crabPosition, setCrabPosition] = useState({ x: 200, y: 300 })
+  const [isWalking, setIsWalking] = useState(false)
+  const [facingRight, setFacingRight] = useState(true)
   const roomRef = useRef<HTMLDivElement>(null)
 
-  // Random clawdbot movement
-  useEffect(() => {
-    const moveInterval = setInterval(() => {
-      if (roomRef.current) {
-        const rect = roomRef.current.getBoundingClientRect()
-        const newX = Math.random() * (rect.width - 100) + 50
-        const newY = Math.random() * (rect.height - 200) + 150
-        setClawdbotPos({ x: newX, y: newY })
-      }
-    }, 3000)
-
-    return () => clearInterval(moveInterval)
-  }, [])
-
+  // Handle click to move crab
   const handleRoomClick = (e: React.MouseEvent) => {
-    if (roomRef.current && !draggingItem) {
-      const rect = roomRef.current.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-      setClawdbotPos({ x: Math.max(50, Math.min(x, rect.width - 50)), y: Math.max(100, Math.min(y, rect.height - 100)) })
-    }
+    if (!roomRef.current) return
+    
+    const rect = roomRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left - 60 // Center the crab
+    const y = e.clientY - rect.top - 60
+    
+    setFacingRight(x > crabPosition.x)
+    setIsWalking(true)
+    setCrabPosition({ x: Math.max(0, x), y: Math.max(0, y) })
+    
+    setTimeout(() => setIsWalking(false), 500)
   }
 
-  const handleDragStart = (itemId: string) => {
-    setDraggingItem(itemId)
+  // Handle furniture drag
+  const handleFurnitureDrag = (id: string, e: React.DragEvent) => {
+    e.dataTransfer.setData('furnitureId', id)
   }
 
-  const handleDragEnd = (e: React.MouseEvent, itemId: string) => {
-    if (roomRef.current) {
-      const rect = roomRef.current.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
+  const handleFurnitureDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    const id = e.dataTransfer.getData('furnitureId')
+    if (!id || !roomRef.current) return
 
-      onUpdateInventory(
-        inventory.map(item => 
-          item.id === itemId 
-            ? { ...item, placed: { x, y } }
-            : item
-        )
-      )
-    }
-    setDraggingItem(null)
+    const rect = roomRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left - 75
+    const y = e.clientY - rect.top - 75
+
+    const updated = inventory.map(item => 
+      item.id === id ? { ...item, position: { x, y } } : item
+    )
+    onUpdateInventory(updated)
   }
-
-  const placeItemFromInventory = (item: InventoryItem) => {
-    if (!item.placed && roomRef.current) {
-      const rect = roomRef.current.getBoundingClientRect()
-      onUpdateInventory(
-        inventory.map(i => 
-          i.id === item.id 
-            ? { ...i, placed: { x: rect.width / 2, y: rect.height / 2 } }
-            : i
-        )
-      )
-    }
-  }
-
-  const placedItems = inventory.filter(item => item.placed)
-  const unplacedItems = inventory.filter(item => !item.placed)
 
   return (
     <div className="room-screen">
-      {/* Header */}
-      <div className="room-header">
-        <div className="room-title">🏠 {clawdbot.name}'s Room</div>
-        <div className="clawcash-display">
-          <span>💰</span>
-          <span>{clawCash} ClawCash</span>
-        </div>
-        <button className="shop-button" onClick={onShop}>
-          🛒 C Shop
-        </button>
+      {/* Room background */}
+      <div className="room-background">
+        <img src="/assets/room-background.png" alt="" />
       </div>
 
-      {/* Room Area */}
-      <div 
-        className="room-area" 
-        ref={roomRef}
-        onClick={handleRoomClick}
-      >
-        <div className="room-wall"></div>
-        <div className="room-floor"></div>
-
-        {/* Placed Items */}
-        {placedItems.map(item => (
-          <div
-            key={item.id}
-            className={`room-item ${draggingItem === item.id ? 'dragging' : ''}`}
-            style={{
-              left: item.placed!.x - 25,
-              top: item.placed!.y - 25,
-            }}
-            draggable
-            onDragStart={() => handleDragStart(item.id)}
-            onDragEnd={(e) => handleDragEnd(e as unknown as React.MouseEvent, item.id)}
-          >
-            {item.icon}
+      <div className="room-content">
+        {/* Header */}
+        <header className="room-header">
+          <div className="pet-info">
+            <img 
+              src="/assets/crab-character.png" 
+              alt={clawdbot.name} 
+              className="pet-avatar"
+            />
+            <span className="pet-name">{clawdbot.name}</span>
           </div>
-        ))}
+          <div className="currency">
+            <span>🪙</span>
+            <span>{clawCash.toLocaleString()} ClawCash</span>
+          </div>
+        </header>
 
-        {/* Clawdbot */}
+        {/* Main room area */}
         <div 
-          className="room-clawdbot"
-          style={{
-            left: clawdbotPos.x - 40,
-            top: clawdbotPos.y - 40,
-            filter: COLORS[clawdbot.color] || 'none'
-          }}
+          ref={roomRef}
+          className="room-main"
+          onClick={handleRoomClick}
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={handleFurnitureDrop}
         >
-          🦀
+          {/* Walking crab */}
+          <img
+            src="/assets/crab-walking.png"
+            alt={clawdbot.name}
+            className="walking-crab"
+            style={{
+              left: crabPosition.x,
+              top: crabPosition.y,
+              transform: facingRight ? 'scaleX(1)' : 'scaleX(-1)',
+              transition: isWalking ? 'all 0.5s ease' : 'none'
+            }}
+          />
+
+          {/* Placed furniture */}
+          {inventory.filter(item => item.placed && item.position).map(item => (
+            <div
+              key={item.id}
+              className="furniture-item"
+              style={{
+                left: item.position!.x,
+                top: item.position!.y,
+              }}
+              draggable
+              onDragStart={(e) => handleFurnitureDrag(item.id, e)}
+            >
+              <img src={`/assets/furniture-${item.type}.png`} alt={item.name} />
+            </div>
+          ))}
         </div>
 
-        {/* Inventory Bar */}
-        {unplacedItems.length > 0 && (
-          <div className="inventory-bar">
-            {unplacedItems.map(item => (
-              <div 
-                key={item.id}
-                className="inventory-slot"
-                onClick={() => placeItemFromInventory(item)}
-                title={item.name}
-              >
-                {item.icon}
-              </div>
-            ))}
-          </div>
-        )}
+        {/* Toolbar */}
+        <div className="room-toolbar">
+          <button className="toolbar-btn" onClick={onShop}>
+            🛍️ W Shop
+          </button>
+          <button className="toolbar-btn">
+            📦 Inventory ({inventory.length})
+          </button>
+          <button className="toolbar-btn">
+            🎮 Games
+          </button>
+          <button className="toolbar-btn">
+            🗺️ Map
+          </button>
+        </div>
       </div>
     </div>
   )

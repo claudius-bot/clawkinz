@@ -8,185 +8,153 @@ interface ShopScreenProps {
 }
 
 const CATEGORIES = [
-  { id: 'furniture', name: 'Furniture', icon: '🛋️' },
-  { id: 'food', name: 'Food', icon: '🍕' },
-  { id: 'decorations', name: 'Decorations', icon: '🖼️' },
-  { id: 'plants', name: 'Plants', icon: '🌱' },
-  { id: 'beds', name: 'Beds', icon: '🛏️' },
-  { id: 'lighting', name: 'Lighting', icon: '💡' },
-  { id: 'rugs', name: 'Rugs', icon: '🟫' },
-  { id: 'tables', name: 'Tables', icon: '🪑' },
-  { id: 'electronics', name: 'Electronics', icon: '📺' },
-  { id: 'toys', name: 'Toys', icon: '🧸' },
-  { id: 'outdoor', name: 'Outdoor', icon: '🌳' },
-  { id: 'special', name: 'Special', icon: '⭐' },
+  { id: 'furniture', label: '🛋️ Furniture', icon: '🛋️' },
+  { id: 'food', label: '🍕 Food', icon: '🍕' },
+  { id: 'clothing', label: '👕 Clothing', icon: '👕' },
+  { id: 'toys', label: '🎾 Toys', icon: '🎾' },
+  { id: 'decorations', label: '🎨 Decorations', icon: '🎨' },
+  { id: 'special', label: '✨ Special', icon: '✨' },
 ]
 
-const SHOP_ITEMS: Record<string, ShopItem[]> = {
-  furniture: [
-    { id: 'sofa', name: 'Cozy Sofa', icon: '🛋️', category: 'furniture', price: 150 },
-    { id: 'chair', name: 'Comfy Chair', icon: '🪑', category: 'furniture', price: 75 },
-    { id: 'bookshelf', name: 'Bookshelf', icon: '📚', category: 'furniture', price: 120 },
-    { id: 'dresser', name: 'Dresser', icon: '🗄️', category: 'furniture', price: 100 },
-  ],
-  food: [
-    { id: 'pizza', name: 'Yummy Pizza', icon: '🍕', category: 'food', price: 25 },
-    { id: 'cake', name: 'Birthday Cake', icon: '🎂', category: 'food', price: 50 },
-    { id: 'icecream', name: 'Ice Cream', icon: '🍦', category: 'food', price: 20 },
-    { id: 'cookie', name: 'Cookie', icon: '🍪', category: 'food', price: 15 },
-  ],
-  decorations: [
-    { id: 'painting', name: 'Art Painting', icon: '🖼️', category: 'decorations', price: 80 },
-    { id: 'mirror', name: 'Fancy Mirror', icon: '🪞', category: 'decorations', price: 60 },
-    { id: 'clock', name: 'Wall Clock', icon: '🕐', category: 'decorations', price: 45 },
-    { id: 'vase', name: 'Pretty Vase', icon: '🏺', category: 'decorations', price: 55 },
-  ],
-  plants: [
-    { id: 'flower', name: 'Flower Pot', icon: '🌸', category: 'plants', price: 35 },
-    { id: 'cactus', name: 'Cute Cactus', icon: '🌵', category: 'plants', price: 40 },
-    { id: 'tree', name: 'Mini Tree', icon: '🌳', category: 'plants', price: 90 },
-    { id: 'tulip', name: 'Tulip', icon: '🌷', category: 'plants', price: 30 },
-  ],
-  beds: [
-    { id: 'bed', name: 'Cozy Bed', icon: '🛏️', category: 'beds', price: 200 },
-    { id: 'hammock', name: 'Hammock', icon: '🏖️', category: 'beds', price: 150 },
-    { id: 'pillow', name: 'Fluffy Pillow', icon: '🛋️', category: 'beds', price: 40 },
-  ],
-  lighting: [
-    { id: 'lamp', name: 'Table Lamp', icon: '🪔', category: 'lighting', price: 55 },
-    { id: 'candle', name: 'Candle', icon: '🕯️', category: 'lighting', price: 25 },
-    { id: 'chandelier', name: 'Chandelier', icon: '💡', category: 'lighting', price: 180 },
-  ],
-  rugs: [
-    { id: 'rug1', name: 'Cozy Rug', icon: '🟫', category: 'rugs', price: 60 },
-    { id: 'rug2', name: 'Fancy Carpet', icon: '🔲', category: 'rugs', price: 85 },
-  ],
-  tables: [
-    { id: 'table', name: 'Coffee Table', icon: '🪑', category: 'tables', price: 70 },
-    { id: 'desk', name: 'Study Desk', icon: '🖥️', category: 'tables', price: 110 },
-  ],
-  electronics: [
-    { id: 'tv', name: 'Big TV', icon: '📺', category: 'electronics', price: 250 },
-    { id: 'radio', name: 'Radio', icon: '📻', category: 'electronics', price: 65 },
-    { id: 'computer', name: 'Computer', icon: '💻', category: 'electronics', price: 300 },
-  ],
-  toys: [
-    { id: 'teddy', name: 'Teddy Bear', icon: '🧸', category: 'toys', price: 45 },
-    { id: 'ball', name: 'Beach Ball', icon: '🏐', category: 'toys', price: 20 },
-    { id: 'kite', name: 'Kite', icon: '🪁', category: 'toys', price: 35 },
-  ],
-  outdoor: [
-    { id: 'bench', name: 'Park Bench', icon: '🪑', category: 'outdoor', price: 80 },
-    { id: 'fountain', name: 'Fountain', icon: '⛲', category: 'outdoor', price: 200 },
-    { id: 'gnome', name: 'Garden Gnome', icon: '🧙', category: 'outdoor', price: 50 },
-  ],
-  special: [
-    { id: 'trophy', name: 'Trophy', icon: '🏆', category: 'special', price: 500 },
-    { id: 'crown', name: 'Royal Crown', icon: '👑', category: 'special', price: 1000 },
-    { id: 'star', name: 'Gold Star', icon: '⭐', category: 'special', price: 250 },
-  ],
-}
+const SHOP_ITEMS: ShopItem[] = [
+  // Furniture
+  { id: 'bed1', name: 'Cozy Bed', category: 'furniture', price: 500, emoji: '🛏️', image: '/assets/furniture-bed.png' },
+  { id: 'chair1', name: 'Comfy Chair', category: 'furniture', price: 300, emoji: '🪑' },
+  { id: 'table1', name: 'Round Table', category: 'furniture', price: 400, emoji: '🪵' },
+  { id: 'lamp1', name: 'Cute Lamp', category: 'furniture', price: 200, emoji: '🪔' },
+  { id: 'plant1', name: 'Potted Plant', category: 'furniture', price: 150, emoji: '🪴' },
+  { id: 'rug1', name: 'Fluffy Rug', category: 'furniture', price: 350, emoji: '🟫' },
+  // Food
+  { id: 'pizza', name: 'Cheesy Pizza', category: 'food', price: 50, emoji: '🍕' },
+  { id: 'burger', name: 'Tasty Burger', category: 'food', price: 60, emoji: '🍔' },
+  { id: 'icecream', name: 'Ice Cream', category: 'food', price: 40, emoji: '🍦' },
+  { id: 'cake', name: 'Birthday Cake', category: 'food', price: 100, emoji: '🎂' },
+  { id: 'apple', name: 'Fresh Apple', category: 'food', price: 20, emoji: '🍎' },
+  { id: 'cookie', name: 'Chocolate Cookie', category: 'food', price: 30, emoji: '🍪' },
+  // Toys
+  { id: 'ball1', name: 'Beach Ball', category: 'toys', price: 75, emoji: '🏐' },
+  { id: 'teddy', name: 'Teddy Bear', category: 'toys', price: 250, emoji: '🧸' },
+  { id: 'kite', name: 'Rainbow Kite', category: 'toys', price: 150, emoji: '🪁' },
+  { id: 'puzzle', name: 'Fun Puzzle', category: 'toys', price: 100, emoji: '🧩' },
+  // Clothing
+  { id: 'hat1', name: 'Party Hat', category: 'clothing', price: 200, emoji: '🎩' },
+  { id: 'bow1', name: 'Cute Bow', category: 'clothing', price: 150, emoji: '🎀' },
+  { id: 'crown', name: 'Royal Crown', category: 'clothing', price: 500, emoji: '👑' },
+  { id: 'glasses', name: 'Cool Shades', category: 'clothing', price: 175, emoji: '🕶️' },
+  // Decorations
+  { id: 'poster1', name: 'Star Poster', category: 'decorations', price: 100, emoji: '⭐' },
+  { id: 'trophy', name: 'Gold Trophy', category: 'decorations', price: 300, emoji: '🏆' },
+  { id: 'balloon', name: 'Party Balloons', category: 'decorations', price: 50, emoji: '🎈' },
+  { id: 'frame', name: 'Photo Frame', category: 'decorations', price: 125, emoji: '🖼️' },
+  // Special
+  { id: 'gem1', name: 'Magic Gem', category: 'special', price: 1000, emoji: '💎' },
+  { id: 'wand', name: 'Sparkle Wand', category: 'special', price: 750, emoji: '🪄' },
+  { id: 'rainbow', name: 'Rainbow Charm', category: 'special', price: 500, emoji: '🌈' },
+]
 
 export default function ShopScreen({ clawCash, onPurchase, onBack }: ShopScreenProps) {
   const [selectedCategory, setSelectedCategory] = useState('furniture')
-  const [message, setMessage] = useState('')
+  const [purchaseMessage, setPurchaseMessage] = useState<string | null>(null)
 
-  const handleBuy = (item: ShopItem) => {
+  const filteredItems = SHOP_ITEMS.filter(item => item.category === selectedCategory)
+
+  const handlePurchase = (item: ShopItem) => {
     if (clawCash < item.price) {
-      setMessage("Not enough ClawCash! 😢")
-      setTimeout(() => setMessage(''), 2000)
+      setPurchaseMessage("Not enough ClawCash! 😢")
+      setTimeout(() => setPurchaseMessage(null), 2000)
       return
     }
 
     const inventoryItem: InventoryItem = {
-      id: Date.now().toString(),
+      id: `${item.id}-${Date.now()}`,
       name: item.name,
+      type: item.id,
       category: item.category,
-      icon: item.icon,
-      price: item.price,
+      emoji: item.emoji,
+      placed: false,
+      position: { x: 0, y: 0 }
     }
 
-    const success = onPurchase(inventoryItem, item.price)
-    if (success) {
-      setMessage(`Bought ${item.name}! 🎉`)
-      setTimeout(() => setMessage(''), 2000)
+    if (onPurchase(inventoryItem, item.price)) {
+      setPurchaseMessage(`Purchased ${item.name}! 🎉`)
+      setTimeout(() => setPurchaseMessage(null), 2000)
     }
   }
-
-  const items = SHOP_ITEMS[selectedCategory] || []
 
   return (
     <div className="shop-screen">
       {/* Header */}
-      <div className="shop-header">
-        <div className="shop-logo">
-          <span className="shop-mascot">🦀</span>
-          <span className="shop-logo-text">C Shop</span>
+      <header className="shop-header">
+        <div className="shop-title">
+          <img src="/assets/shop-building.png" alt="W Shop" />
+          <h1>W Shop</h1>
         </div>
-        <div className="clawcash-display">
-          <span>💰</span>
-          <span>{clawCash} ClawCash</span>
+        <div className="currency">
+          <span>🪙</span>
+          <span>{clawCash.toLocaleString()} ClawCash</span>
         </div>
-        <button className="back-button" onClick={onBack}>
+        <button className="back-btn" onClick={onBack}>
           ← Back to Room
         </button>
-      </div>
+      </header>
 
-      {/* Content */}
+      {/* Purchase message */}
+      {purchaseMessage && (
+        <div style={{
+          position: 'fixed',
+          top: '100px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          background: '#fff',
+          padding: '15px 30px',
+          borderRadius: '20px',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+          zIndex: 100,
+          fontWeight: 'bold',
+          color: '#764ba2'
+        }}>
+          {purchaseMessage}
+        </div>
+      )}
+
       <div className="shop-content">
-        {/* Categories */}
-        <div className="shop-categories">
+        {/* Category sidebar */}
+        <nav className="category-sidebar">
           {CATEGORIES.map(cat => (
             <button
               key={cat.id}
-              className={`category-button ${selectedCategory === cat.id ? 'selected' : ''}`}
+              className={`category-btn ${selectedCategory === cat.id ? 'active' : ''}`}
               onClick={() => setSelectedCategory(cat.id)}
             >
-              <span className="category-icon">{cat.icon}</span>
-              <span className="category-name">{cat.name}</span>
+              <span>{cat.icon}</span>
+              <span>{cat.label.split(' ')[1]}</span>
             </button>
           ))}
-        </div>
+        </nav>
 
-        {/* Items */}
-        <div className="shop-items">
-          {message && (
-            <div style={{
-              textAlign: 'center',
-              padding: '10px',
-              background: message.includes('😢') ? '#fee2e2' : '#dcfce7',
-              borderRadius: '10px',
-              marginBottom: '15px',
-              fontWeight: 600,
-              color: message.includes('😢') ? '#dc2626' : '#16a34a'
-            }}>
-              {message}
-            </div>
-          )}
-          <div className="items-grid">
-            {items.map(item => (
-              <div 
-                key={item.id} 
-                className="shop-item"
-                onClick={() => handleBuy(item)}
-              >
-                <div className="item-icon">{item.icon}</div>
-                <div className="item-name">{item.name}</div>
-                <div className="item-price">💰 {item.price}</div>
+        {/* Items grid */}
+        <div className="items-grid">
+          {filteredItems.map(item => (
+            <div
+              key={item.id}
+              className="shop-item"
+              onClick={() => handlePurchase(item)}
+            >
+              <div className="item-image">
+                {item.image ? (
+                  <img src={item.image} alt={item.name} style={{ width: '80px', height: 'auto' }} />
+                ) : (
+                  item.emoji
+                )}
               </div>
-            ))}
-          </div>
+              <div className="item-name">{item.name}</div>
+              <div className="item-price">
+                <span>🪙</span>
+                <span>{item.price}</span>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-
-      {/* Footer */}
-      <div className="shop-footer">
-        <div className="cart-info">
-          Click items to buy them instantly!
-        </div>
-        <button className="checkout-button" onClick={onBack}>
-          Done Shopping 🛒
-        </button>
       </div>
     </div>
   )
