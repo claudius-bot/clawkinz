@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Clawdbot } from '../types'
+import type { Clawdbot } from '../types'
 
 interface CreateClawdbotProps {
   onComplete: (clawdbot: Clawdbot) => void

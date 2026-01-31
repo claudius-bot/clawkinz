@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { InventoryItem, ShopItem } from '../types'
+import type { InventoryItem, ShopItem } from '../types'
 
 interface ShopScreenProps {
   clawCash: number

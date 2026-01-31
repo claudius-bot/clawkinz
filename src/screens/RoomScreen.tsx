@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Clawdbot, InventoryItem } from '../types'
+import type { Clawdbot, InventoryItem } from '../types'
 
 interface RoomScreenProps {
   clawdbot: Clawdbot

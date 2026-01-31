@@ -4,7 +4,7 @@ import LoginScreen from './screens/LoginScreen'
 import CreateClawdbot from './screens/CreateClawdbot'
 import RoomScreen from './screens/RoomScreen'
 import ShopScreen from './screens/ShopScreen'
-import { User, Clawdbot, InventoryItem } from './types'
+import type { User, Clawdbot, InventoryItem } from './types'
 import './App.css'
 
 type Screen = 'welcome' | 'login' | 'register' | 'create' | 'room' | 'shop'
