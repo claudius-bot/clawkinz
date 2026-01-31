@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import type { Clawdbot, InventoryItem } from '../types'
+import { asset } from '../utils'
 
 interface RoomScreenProps {
   clawdbot: Clawdbot
@@ -60,7 +61,7 @@ export default function RoomScreen({
     <div className="room-screen">
       {/* Room background */}
       <div className="room-background">
-        <img src="/assets/room-background.png" alt="" />
+        <img src={asset('room-background.png')} alt="" />
       </div>
 
       <div className="room-content">
@@ -68,7 +69,7 @@ export default function RoomScreen({
         <header className="room-header">
           <div className="pet-info">
             <img 
-              src="/assets/crab-character.png" 
+              src={asset('crab-character.png')}
               alt={clawdbot.name} 
               className="pet-avatar"
             />
@@ -90,7 +91,7 @@ export default function RoomScreen({
         >
           {/* Walking crab */}
           <img
-            src="/assets/crab-walking.png"
+            src={asset('crab-walking.png')}
             alt={clawdbot.name}
             className="walking-crab"
             style={{
@@ -113,7 +114,7 @@ export default function RoomScreen({
               draggable
               onDragStart={(e) => handleFurnitureDrag(item.id, e)}
             >
-              <img src={`/assets/furniture-${item.type}.png`} alt={item.name} />
+              <img src={asset(`furniture-${item.type}.png`)} alt={item.name} />
             </div>
           ))}
         </div>

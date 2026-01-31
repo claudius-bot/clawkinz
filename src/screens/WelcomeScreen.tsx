@@ -1,3 +1,5 @@
+import { asset } from '../utils'
+
 interface WelcomeScreenProps {
   onMember: () => void
   onNewAdoption: () => void
@@ -8,31 +10,31 @@ export default function WelcomeScreen({ onMember, onNewAdoption }: WelcomeScreen
     <div className="welcome-screen">
       {/* Full background image */}
       <div className="welcome-background">
-        <img src="/assets/welcome-background.png" alt="" className="bg-image" />
+        <img src={asset('welcome-background.png')} alt="" className="bg-image" />
       </div>
       
       {/* Content overlay */}
       <div className="welcome-content">
         {/* Logo */}
         <div className="logo-container">
-          <img src="/assets/logo.png" alt="Clawkinz" className="main-logo" />
-          <img src="/assets/banner-tagline.png" alt="Come in and Play!" className="tagline-banner" />
+          <img src={asset('logo.png')} alt="Clawkinz" className="main-logo" />
+          <img src={asset('banner-tagline.png')} alt="Come in and Play!" className="tagline-banner" />
         </div>
         
         {/* Characters */}
         <div className="characters-row">
-          <img src="/assets/crab-character.png" alt="Crab friend" className="welcome-crab crab-left" />
-          <img src="/assets/crab-walking.png" alt="Crab friend" className="welcome-crab crab-right" />
+          <img src={asset('crab-character.png')} alt="Crab friend" className="welcome-crab crab-left" />
+          <img src={asset('crab-walking.png')} alt="Crab friend" className="welcome-crab crab-right" />
         </div>
         
         {/* Signpost buttons */}
         <div className="signposts">
           <button className="signpost-btn" onClick={onMember}>
-            <img src="/assets/signpost-login.png" alt="Login" />
+            <img src={asset('signpost-login.png')} alt="Login" />
             <span className="signpost-text">I'M A MEMBER</span>
           </button>
           <button className="signpost-btn" onClick={onNewAdoption}>
-            <img src="/assets/signpost-register.png" alt="Register" />
+            <img src={asset('signpost-register.png')} alt="Register" />
             <span className="signpost-text">MY FIRST ADOPTION</span>
           </button>
         </div>

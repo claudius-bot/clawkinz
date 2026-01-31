@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { User } from '../types'
+import { asset } from '../utils'
 
 interface LoginScreenProps {
   isRegister: boolean
@@ -28,7 +29,7 @@ export default function LoginScreen({ isRegister, onLogin, onBack, onSwitch }: L
     <div className="login-screen">
       <div className="login-container">
         <img 
-          src="/assets/crab-character.png" 
+          src={asset('crab-character.png')}
           alt="Clawdbot mascot" 
           className="login-mascot"
         />

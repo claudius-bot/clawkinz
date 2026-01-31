@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { InventoryItem, ShopItem } from '../types'
+import { asset } from '../utils'
 
 interface ShopScreenProps {
   clawCash: number
@@ -18,7 +19,7 @@ const CATEGORIES = [
 
 const SHOP_ITEMS: ShopItem[] = [
   // Furniture
-  { id: 'bed1', name: 'Cozy Bed', category: 'furniture', price: 500, emoji: '🛏️', image: '/assets/furniture-bed.png' },
+  { id: 'bed1', name: 'Cozy Bed', category: 'furniture', price: 500, emoji: '🛏️', image: 'furniture-bed.png' },
   { id: 'chair1', name: 'Comfy Chair', category: 'furniture', price: 300, emoji: '🪑' },
   { id: 'table1', name: 'Round Table', category: 'furniture', price: 400, emoji: '🪵' },
   { id: 'lamp1', name: 'Cute Lamp', category: 'furniture', price: 200, emoji: '🪔' },
@@ -86,7 +87,7 @@ export default function ShopScreen({ clawCash, onPurchase, onBack }: ShopScreenP
       {/* Header */}
       <header className="shop-header">
         <div className="shop-title">
-          <img src="/assets/shop-building.png" alt="W Shop" />
+          <img src={asset('shop-building.png')} alt="W Shop" />
           <h1>W Shop</h1>
         </div>
         <div className="currency">
@@ -142,7 +143,7 @@ export default function ShopScreen({ clawCash, onPurchase, onBack }: ShopScreenP
             >
               <div className="item-image">
                 {item.image ? (
-                  <img src={item.image} alt={item.name} style={{ width: '80px', height: 'auto' }} />
+                  <img src={asset(item.image)} alt={item.name} style={{ width: '80px', height: 'auto' }} />
                 ) : (
                   item.emoji
                 )}
