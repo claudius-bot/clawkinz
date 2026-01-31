@@ -9,10 +9,14 @@
 }
 
 body {
-  font-family: 'Comic Sans MS', 'Chalkboard', 'Comic Neue', cursive, sans-serif;
+  font-family: 'Nunito', 'Comic Sans MS', sans-serif;
   background: #4a9fd4;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+h1, h2, h3, .login-title, .create-title, .shop-title h1, .pet-name, .signpost-text, .nav-pill {
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive;
 }
 
 /* ============================================
